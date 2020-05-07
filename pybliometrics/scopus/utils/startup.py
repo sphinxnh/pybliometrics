@@ -1,7 +1,12 @@
 import configparser
 from os.path import expanduser
+from os import environ
 
-CONFIG_FILE = expanduser("~/.scopus/config.ini")
+
+if 'PYBLIOMETRICS_CONFIG_FILE' in environ:
+    CONFIG_FILE=environ['PYBLIOMETRICS_CONFIG_FILE']
+else:
+    CONFIG_FILE = expanduser("~/.scopus/config.ini")
 try:
     config = configparser.ConfigParser()
     config.optionxform = str
